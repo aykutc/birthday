@@ -45,6 +45,14 @@ $('document').ready(function(){
 	});
 
 	$('#bannar_coming').click(function(){
+
+			// Start floating photos animation
+		startFloatingPhotos();
+
+		setTimeout(() => {
+			stopFloatingPhotos();
+		}, 7000);
+
 		$('.bannar').addClass('bannar-come');
 		$(this).fadeOut('slow').delay(6000).promise().done(function(){
 			$('#balloons_flying').fadeIn('slow');
@@ -134,8 +142,7 @@ $('document').ready(function(){
 	$('#light_candle').click(function(){
 		$('.fuego').fadeIn('slow');
 		
-		// Start floating photos animation
-		startFloatingPhotos();
+	
 		
 		$(this).fadeOut('slow').promise().done(function(){
 			$('#wish_message').fadeIn('slow');
@@ -239,7 +246,7 @@ function startFloatingPhotos() {
 	
 	// Start rotation animations and movement after photos appear
 	setTimeout(function() {
-		$('#photo1, #photo3, #photo5, #photo7').addClass('photos-rotate-behaviour-one');
+		$('#photo1, #photo3, #photo5').addClass('photos-rotate-behaviour-one');
 		$('#photo2, #photo4, #photo6').addClass('photos-rotate-behaviour-two');
 		
 		// Start individual floating loops for each photo with delays
@@ -249,65 +256,65 @@ function startFloatingPhotos() {
 		setTimeout(function() { photoLoopFour(); }, 1100);
 		setTimeout(function() { photoLoopFive(); }, 1300);
 		setTimeout(function() { photoLoopSix(); }, 1500);
-		setTimeout(function() { photoLoopSeven(); }, 1700);
-	}, 2500);
+	}, 0);
+}
+function stopFloatingPhotos() {
+	// Stop all ongoing animations for floating photos
+	$('.floating-photo').stop(true, true);
+	// Hide all floating photos smoothly
+	$('.floating-photo').fadeOut('slow', function() {
+		// Optionally remove active/rotation classes if needed
+		$(this).removeClass('active photos-rotate-behaviour-one photos-rotate-behaviour-two');
+	});
 }
 
 function photoLoopOne() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth - 50);
+	var randtop = Math.random() * (window.innerHeight - 50);
 	$('#photo1').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopOne();
 	});
 }
 
 function photoLoopTwo() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth + 50);
+	var randtop = Math.random() * (window.innerHeight + 50);
 	$('#photo2').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopTwo();
 	});
 }
 
 function photoLoopThree() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth - 150);
+	var randtop = Math.random() * (window.innerHeight - 150);
 	$('#photo3').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopThree();
 	});
 }
 
 function photoLoopFour() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth + 250);
+	var randtop = Math.random() * (window.innerHeight + 250);
 	$('#photo4').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopFour();
 	});
 }
 
 function photoLoopFive() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth + 150);
+	var randtop = Math.random() * (window.innerHeight + 150);
 	$('#photo5').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopFive();
 	});
 }
 
 function photoLoopSix() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
+	var randleft = Math.random() * (window.innerWidth + 100);
+	var randtop = Math.random() * (window.innerHeight + 100);
 	$('#photo6').animate({left:randleft,top:randtop}, 8000, function(){
 		photoLoopSix();
 	});
 }
 
-function photoLoopSeven() {
-	var randleft = Math.random() * (window.innerWidth - 250);
-	var randtop = Math.random() * (window.innerHeight - 250);
-	$('#photo7').animate({left:randleft,top:randtop}, 8000, function(){
-		photoLoopSeven();
-	});
-}
-
-
+ 
 //alert('hello');
