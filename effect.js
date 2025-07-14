@@ -151,12 +151,30 @@ $('document').ready(function(){
 		$('#b6,#b7').hide(); // 5 buton kalsın, kalanları gizle
 		// Balonları ekranın tam ortasına eşit aralıklarla yerleştir
 		const balloonCount = 5;
-		const balloonSpacing = 85; // Balonlar arası mesafe (px)
-		const center = vw; // Ekranın tam ortası
+		const balloonSpacing = 85;
+		const balloonWidth = 60; // Balonun yaklaşık genişliği (px)
+		vw = $(window).width();
+		const isMobile = vw < 600;
+		const totalBalloonsWidth = balloonCount * balloonWidth + (balloonCount - 1) * balloonSpacing;
 
-		for (let i = 0; i < balloonCount; i++) {
-			const left = center + (i - Math.floor(balloonCount / 2)) * balloonSpacing;
-			$('#b' + (i + 1) + (i + 1)).animate({ top: 240, left: left }, 500);
+		if (isMobile) {
+			// Mobilde: balonları ekranın tam ortasına, kenarlarda ve aralarda eşit boşluklarla yerleştir
+			const sidePadding = 20; // Sol ve sağdan boşluk (px)
+			const availableWidth = vw - 2 * sidePadding;
+			const spacing = (availableWidth - balloonCount * balloonWidth) / (balloonCount - 1);
+
+			for (let i = 0; i < balloonCount; i++) {
+				let left = sidePadding + i * (balloonWidth + spacing);
+				$('#b' + (i + 1) + (i + 1)).animate({ top: 240, left: left }, 500);
+			}
+		} else {
+			// Masaüstünde: balonları ekranın tam ortasına, eşit aralıklarla yerleştir
+			const center = vw / 2;
+			const startLeft = center - totalBalloonsWidth / 2;
+			for (let i = 0; i < balloonCount; i++) {
+				let left = startLeft + i * (balloonWidth + balloonSpacing);
+				$('#b' + (i + 1) + (i + 1)).animate({ top: 240, left: left }, 500);
+			}
 		}
 		$('.balloons').css('opacity','0.9');
 		$('.balloons h2').fadeIn(3000);
