@@ -15,6 +15,9 @@ body {
 	background-color: #FF69B4;
 	
 }
+.ballons-container {
+	width: 100%;
+}
 .peach-after {
 	-webkit-animation:peach_alive linear 8s infinite;
 	-moz-animation:peach_alive linear 8s infinite;
