@@ -133,6 +133,10 @@ $('document').ready(function(){
 
 	$('#light_candle').click(function(){
 		$('.fuego').fadeIn('slow');
+		
+		// Start floating photos animation
+		startFloatingPhotos();
+		
 		$(this).fadeOut('slow').promise().done(function(){
 			$('#wish_message').fadeIn('slow');
 		});
@@ -214,7 +218,96 @@ $('document').ready(function(){
 	});
 });
 
+// Floating Photos Functions
+function startFloatingPhotos() {
+	// Show all photos with a delay between each and set initial positions
+	$('.floating-photo').each(function(index) {
+		var photo = $(this);
+		var initialLeft = Math.random() * (window.innerWidth - 250);
+		var initialTop = Math.random() * (window.innerHeight - 250);
+		
+		// Set initial position
+		photo.css({
+			'left': initialLeft + 'px',
+			'top': initialTop + 'px'
+		});
+		
+		setTimeout(function() {
+			photo.addClass('active');
+		}, index * 300);
+	});
+	
+	// Start rotation animations and movement after photos appear
+	setTimeout(function() {
+		$('#photo1, #photo3, #photo5, #photo7').addClass('photos-rotate-behaviour-one');
+		$('#photo2, #photo4, #photo6').addClass('photos-rotate-behaviour-two');
+		
+		// Start individual floating loops for each photo with delays
+		setTimeout(function() { photoLoopOne(); }, 500);
+		setTimeout(function() { photoLoopTwo(); }, 700);
+		setTimeout(function() { photoLoopThree(); }, 900);
+		setTimeout(function() { photoLoopFour(); }, 1100);
+		setTimeout(function() { photoLoopFive(); }, 1300);
+		setTimeout(function() { photoLoopSix(); }, 1500);
+		setTimeout(function() { photoLoopSeven(); }, 1700);
+	}, 2500);
+}
 
+function photoLoopOne() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo1').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopOne();
+	});
+}
+
+function photoLoopTwo() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo2').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopTwo();
+	});
+}
+
+function photoLoopThree() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo3').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopThree();
+	});
+}
+
+function photoLoopFour() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo4').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopFour();
+	});
+}
+
+function photoLoopFive() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo5').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopFive();
+	});
+}
+
+function photoLoopSix() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo6').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopSix();
+	});
+}
+
+function photoLoopSeven() {
+	var randleft = Math.random() * (window.innerWidth - 250);
+	var randtop = Math.random() * (window.innerHeight - 250);
+	$('#photo7').animate({left:randleft,top:randtop}, 8000, function(){
+		photoLoopSeven();
+	});
+}
 
 
 //alert('hello');
